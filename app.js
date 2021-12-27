@@ -77,9 +77,10 @@ const promptProject = portfolioData => {
 };
 
 promptUser()
-  .then(answers => console.log(answers))
   .then(promptProject)
-  .then(projectAnswers => console.log(projectAnswers));
+  .then(portfolioData => {
+    console.log(portfolioData);
+  });
 // const fs = require('fs');
 // use 'require' to pull the code from template.js since it has the file
 // const generatePage = require('./src/page-template.js');
