@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generatePage = require('./src/page-template');
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -45,11 +47,6 @@ const promptUser = () => {
           return false;
         }
       }
-    },
-    {
-      type: 'input',
-      name: 'about',
-      message: 'Provide some information about yourself:'
     }
   ]);
 };
@@ -84,7 +81,7 @@ const promptProject = portfolioData => {
       name: 'description',
       message: 'Provide a description of the project. (Required)',
       validate: projectDescription => {
-        if (projectDescription){
+        if (projectDescription) {
           return true;
         } else {
           console.log('Please enter the Projects description!');
@@ -134,12 +131,43 @@ const promptProject = portfolioData => {
   });
 };
 
+// TOOL: used to test data
+// const mockData = {
+  // name: 'Faissal ',
+  // github: 'Jiryeah',
+  // confirmAbout: true,
+  // about: 'aklsdfjakl;sdfja;skldfjas;lkdfjas;lkdfjas;ldkfjas;ldkfjaslkdfjas;dlkfjasl;kdfjas;lkdfjas;dlkfjas;dlkfjasd;klfjasd;lkfjas;kldfjasl;kdfjas;kldfjas;lkdfjas;dlkfjasd;lkfjas;dlkfjas;dlkfjas;dlkfjasd;klfjasd;lkfjasd;lkfjasdl;kfjaskl;dfjas;dklfjas;dlkfjas;lkdfjas;lkdfjas;lkdfjas;lkdfjas;lkdfjas;lkdfjas;lkdfjas;lkdfjas;ldkfjasd;lkfjasdlk;fjasdkl;fjasd;lkfjasd;lkfjasd;lkfjasdlk;fja;sldkfjasd;lkfjasd;lkfjas;dlkfjas;ldkfjasd;lfkjasd;lfkjasd;flkajsdf;lkasjdfas;lkdfjas;dlkfjas;dklfjas;dlkfjas;dlfkj;akl',
+  // projects: [
+  //   {
+  //     name: 'Test 1',
+  //     description: 'test run to see if the function operates correctly.',
+  //     languages: [Array],
+  //     link: 'https://github.com/lernantion/test-1',
+  //     feature: true,
+  //     confirmAddProject: true
+  //   },
+  //   {
+  //     name: 'Test 2',
+  //     description: 'test run to see if the second project is successfully added to the object. ',
+  //     languages: [Array],
+  //     link: 'https://github.com/Jiryeah/Test-2',
+  //     feature: true,
+  //     confirmAddProject: false
+  //   }
+  // ]
+// }
+
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
-  });
+    const pageHTML = generatePage(portfolioData);
+    
+    // fs.writeFile('./index.html', pageHTML, err => {
+    //   if (err) throw new Error(err);
 
+    //   console.log('Page crated! Check out index.html in this directory to see it!');
+    // })
+  });
 
 
 
