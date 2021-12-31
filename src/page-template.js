@@ -1,3 +1,17 @@
+// create the about section
+const generateAbout = aboutText => {
+  if (!aboutText) {
+    return '';
+  }
+
+  return `
+    <section class="my-3" id="about">
+      <h2 class="text-dark bg-primary p--2 display-inline-block">About Me</h2>
+      <p>${aboutText}</p>
+    </section>
+  `;
+}
+
 module.exports = templateData => {
   // this will create three variables based on data in templateData
   const { projects, about, ...header } = templateData;
@@ -23,13 +37,13 @@ module.exports = templateData => {
         <nav class="flex-row">
           <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="https://github.com/${header.github}">Github</a>
         </nav>
-      </div
+      </div>
     </header>
     <main class="container my-5">
 
     </main>
     <footer class="container my-5">
-      <h3 class="text-dark>&copy; ${new Date().getFullYear()} by ${header.name}</h3>
+      <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
     </footer>  
   </body>
   </html>
