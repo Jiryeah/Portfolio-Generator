@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
 const generatePage = require('./src/page-template');
 const { writeFile, copyFile } = require('./utils/generate-site');
 
@@ -150,37 +149,3 @@ promptUser()
   .catch(err => {
     console.log(err);
   });
-
-
-
-
-  //   fs.writeFile('./dist/index.html', pageHTML, err => {
-  //     if (err) {
-  //       console.log(err);
-  //       return;
-  //     }
-  //     console.log('Page crated! Check out index.html in this directory to see it!');
-
-  //     fs.copyFile('./src/style.css', './dist/style.css', err => {
-  //       if (err) {
-  //         console.log(err);
-  //         return;
-  //       }
-  //       console.log('Style sheet copied successfully!');
-  //     });
-  //   });
-  // });
-
-// const printProfileData = profileDataArr => {
-  // This...
-//   for (let i = 0; i < profileDataArr.length; i++) {
-//     console.log(profileDataArr[i]);
-//   }
-
-//   console.log('================');
-
-  // Is the same as this...
-//   profileDataArr.forEach(profileItem => console.log(profileItem));
-// };
-
-// printProfileData(profileDataArgs);
